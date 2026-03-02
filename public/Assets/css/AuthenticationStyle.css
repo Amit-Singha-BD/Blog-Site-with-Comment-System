@@ -1,0 +1,80 @@
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
+    padding: 30px 20px; /* উপরে ও নিচে padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 20px 0; /* উপর ও নিচে margin */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 100%;
+}
+
+.register-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 20px 0; /* উপর ও নিচে margin */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    max-width: 550px;
+    width: 100%;
+}
+
+.animated-text {
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #2575fc;
+    animation: typing 4s steps(30, end), blink .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: #2575fc }
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #2575fc;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+}
+
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-footer a {
+    text-decoration: none;
+    color: #2575fc;
+    font-weight: 500;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
