@@ -121,7 +121,7 @@ Admin can update:
 - CRUD Operations
 
 ## Installation Guide
-Follow these steps to run the project locally.
+Follow these 8 steps to install and set up the project:
 
 ### Step 1 Clone the Repository
 ```
