@@ -21,6 +21,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Categories;
 use App\Models\Comment;
+use App\Models\Contact;
 
 class AdminDashboardController extends Controller
 {
@@ -622,5 +623,16 @@ class AdminDashboardController extends Controller
         $article->delete();
 
         return redirect()->back()->with('success', 'Article deleted successfully!');
+    }
+
+    public function contacts(Request $request){
+        $status = $request->query('status');
+
+        $contacts = Contact::where('status', $status)
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10);
+
+        $title = 'Contacts';
+        return view('dashboard/admins-dashboard/contact-management', compact('status', 'contacts', 'title'));
     }
 }

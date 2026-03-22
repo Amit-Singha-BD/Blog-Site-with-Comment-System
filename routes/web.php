@@ -89,6 +89,8 @@ Route::prefix("admin")->name("admin.")->controller(AdminDashboardController::cla
         Route::get('/users/filter', 'usersFilter')->name('users.filter');
         Route::delete('/users/{user}', 'usersDestroy')->name('users.destroy');
         Route::post('/users/store', 'usersStore')->name('users.store');
+
+        Route::get('/contacts', 'contacts')->name('contacts');
     });
 });
 

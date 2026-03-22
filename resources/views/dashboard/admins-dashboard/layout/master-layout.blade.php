@@ -104,6 +104,13 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link {{ Route::is('admin.contacts') ? 'active' : '' }}"
+            href="{{ route('admin.contacts') }}" data-bs-original-title="Users Management">
+            <i class="fas fa-users"></i> <span>Manage Contact</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link {{ Route::is('admin.settings', 'admin.settings.edit') ? 'active' : '' }}"
             href="{{ route('admin.settings') }}" data-bs-original-title="Settings">
             <i class="fa-solid fa-screwdriver-wrench"></i> <span>Settings</span>
