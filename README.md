@@ -7,8 +7,8 @@ The website allows users to read blog posts, comment on posts, browse categories
 
 Role-based access control is implemented using Laravel middleware to restrict admin functionalities.
 
-## Features
-### Public Website
+## Application Overview
+### Front-End (Public Website)
 #### Home Page
 - Displays all blog posts.
 - Shows 9 posts per page using pagination.
@@ -34,7 +34,7 @@ Role-based access control is implemented using Laravel middleware to restrict ad
 - Users can send messages through a contact form.
 - Submitted messages are stored and visible in the admin panel.
 
-### Admin Panel
+### Back-End (Admin Panel)
 #### Dashboard
 Displays important statistics including:
 - Total Posts
@@ -120,31 +120,42 @@ Admin can update:
 - Form Validation
 - CRUD Operations
 
+## Requirements
+- PHP 8.0+
+- Composer
+- MySQL
+- Laravel 10+
+
 ## Installation Guide
 Follow these 8 steps to install and set up the project:
 
-### Step 1 Clone the Repository
+### Step 1
+#### Clone the Repository
 ```
 git clone https://github.com/your-username/your-repository-name.git
 cd your-repository-name
 ```
 
-### Step 2 Install Dependencies
+### Step 2
+#### Install Dependencies
 ```
 composer install
 ```
 
-### Step 3 Setup Environment File
+### Step 3
+#### Setup Environment File
 ```
 cp .env.example .env
 ```
 
-### Step 4 Generate Application Key
+### Step 4
+#### Generate Application Key
 ```
 php artisan key:generate
 ```
 
-### Step 5 Configure Database
+### Step 5
+#### Configure Database
 Update the .env file with your database credentials.
 ```
 DB_DATABASE=blog_site
@@ -152,17 +163,20 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### Step 6 Run Migrations
+### Step 6
+#### Run Migrations
 ```
 php artisan migrate
 ```
 
-### Step 7 Run Seeder
+### Step
+#### 7 Run Seeder
 ```
 php artisan db:seed
 ```
 
-### Step 8 Start Development Server
+### Step 8
+#### Start Development Server
 ```
 php artisan serve
 ```
