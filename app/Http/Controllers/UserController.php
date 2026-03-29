@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Categories;
 use App\Models\Comment;
 use App\Models\Post;
@@ -46,7 +47,8 @@ class UserController extends Controller
     }
 
     public function article(){
-        return view('frontend.article');
+        $article = Article::with(['user', 'category'])->where('status', 'published')->orderBy('created_at', 'desc')->first();
+        return view('frontend.article', compact('article'));
     }
 
     public function about(){
