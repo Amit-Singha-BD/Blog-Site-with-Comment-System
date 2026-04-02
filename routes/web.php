@@ -90,7 +90,9 @@ Route::prefix("admin")->name("admin.")->controller(AdminDashboardController::cla
         Route::delete('/users/{user}', 'usersDestroy')->name('users.destroy');
         Route::post('/users/store', 'usersStore')->name('users.store');
 
-        Route::get('/contacts', 'contacts')->name('contacts');
+        Route::get('/unread/contacts', 'unreadContacts')->name('unread.contacts');
+        Route::get('/read/contacts', 'readContacts')->name('read.contacts');
+        Route::get('/contacts/show', 'contactsShow')->name('contacts.show');
     });
 });
 

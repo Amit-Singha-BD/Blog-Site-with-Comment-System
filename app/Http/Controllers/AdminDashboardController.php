@@ -625,14 +625,21 @@ class AdminDashboardController extends Controller
         return redirect()->back()->with('success', 'Article deleted successfully!');
     }
 
-    public function contacts(Request $request){
-        $status = $request->query('status');
-
-        $contacts = Contact::where('status', $status)
+    public function unreadContacts(){
+        $contacts = Contact::where('status', 'unread')
                             ->orderBy('created_at', 'desc')
                             ->paginate(10);
 
         $title = 'Contacts';
-        return view('dashboard/admins-dashboard/contact-management', compact('status', 'contacts', 'title'));
+        return view('dashboard/admins-dashboard/contact-management', compact('contacts', 'title'));
+    }
+
+    public function readContacts(){
+        $contacts = Contact::where('status', 'read')
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10);
+
+        $title = 'Contacts';
+        return view('dashboard/admins-dashboard/contact-management', compact('contacts', 'title'));
     }
 }

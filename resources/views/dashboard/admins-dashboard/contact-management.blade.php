@@ -1,7 +1,6 @@
 @extends('dashboard/admins-dashboard/layout/master-layout')
 
 @section('content')
-
     {{-- Breadcrumb Section --}}
     <div class="row">
         <div>
@@ -13,12 +12,12 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="d-flex gap-2">
-                <a href="{{ route('admin.contacts', ['status' => 'unread']) }}" 
-                   class="btn {{ request('status') == 'unread' || !request('status') ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="{{ route('admin.unread.contacts') }}"
+                    class="btn {{ route('admin.unread.contacts') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="fas fa-envelope me-1"></i> Unread Messages
                 </a>
-                <a href="{{ route('admin.contacts', ['status' => 'read']) }}" 
-                   class="btn {{ request('status') == 'read' ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="{{ route('admin.read.contacts') }}"
+                    class="btn {{ route('admin.read.contacts') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="fas fa-envelope-open me-1"></i> Read Messages
                 </a>
             </div>
@@ -29,7 +28,10 @@
         <div class="col-lg-12">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-white py-3">
-                    <h5 class="mb-0 gradient-text"><i class="fas fa-address-book me-2"></i> Contact Inquiries</h5>
+                    <h5 class="mb-0 gradient-text">
+                        <i class="fas fa-address-book me-2"></i>
+                        {{ request()->routeIs('admin.unread.contacts') ? 'Unread Contacts' : 'Read Contacts' }}
+                    </h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -46,45 +48,47 @@
                             </thead>
                             <tbody>
                                 @forelse ($contacts as $contact)
-                                <tr class="text-center">
-                                    <td>{{ $contact->id }}</td>
-                                    <td>
-                                        <div class="fw-bold">{{ $contact->name }}</div>
-                                        <div class="text-muted small">{{ $contact->created_at->format('d M, Y') }}</div>
-                                    </td>
-                                    <td>{{ $contact->email }}</td>
-                                    <td class="text-start">{{ Str::limit($contact->subject, 40) }}</td>
-                                    <td>
-                                        @if($contact->is_read)
-                                            <span class="badge bg-light text-success border border-success">Read</span>
-                                        @else
-                                            <span class="badge bg-danger">New</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-2">
-                                            {{-- View Button --}}
-                                            <a href="{{ route('admin.contacts.show', $contact->id) }}" class="btn btn-sm btn-outline-info">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            {{-- Delete Button --}}
-                                            <button type="button" class="btn btn-sm btn-outline-danger delete-contact-btn" 
-                                                    data-bs-toggle="modal" data-bs-target="#deleteContactModal" 
+                                    <tr class="text-center">
+                                        <td>{{ $contact->id }}</td>
+                                        <td>
+                                            <div class="fw-bold">{{ $contact->name }}</div>
+                                            <div class="text-muted small">{{ $contact->created_at->format('d M, Y') }}</div>
+                                        </td>
+                                        <td>{{ $contact->email }}</td>
+                                        <td class="text-start">{{ Str::limit($contact->subject, 40) }}</td>
+                                        <td>
+                                            @if ($contact->is_read)
+                                                <span class="badge bg-light text-success border border-success">Read</span>
+                                            @else
+                                                <span class="badge bg-danger">New</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                {{-- View Button --}}
+                                                <a href="{{ route('admin.contacts.show', $contact->id) }}"
+                                                    class="btn btn-sm btn-outline-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                {{-- Delete Button --}}
+                                                <button type="button"
+                                                    class="btn btn-sm btn-outline-danger delete-contact-btn"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteContactModal"
                                                     data-id="{{ $contact->id }}" data-name="{{ $contact->name }}">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @empty
-                                <tr class="text-center">
-                                    <td colspan="6" class="py-4 text-muted">No messages found in this category.</td>
-                                </tr>
+                                    <tr class="text-center">
+                                        <td colspan="6" class="py-4 text-muted">No messages found in this category.</td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
-                    
+
                     {{-- Pagination --}}
                     <div class="d-flex justify-content-center mt-4">
                         {{ $contacts->links('pagination::bootstrap-5') }}
@@ -118,9 +122,9 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const deleteModal = document.getElementById('deleteContactModal');
-            deleteModal.addEventListener('show.bs.modal', function (event) {
+            deleteModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget;
                 const contactId = button.getAttribute('data-id');
                 const senderName = button.getAttribute('data-name');
@@ -133,5 +137,4 @@
             });
         });
     </script>
-
 @endsection

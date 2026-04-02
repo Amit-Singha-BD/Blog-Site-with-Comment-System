@@ -104,8 +104,8 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{ Route::is('admin.contacts') ? 'active' : '' }}"
-            href="{{ route('admin.contacts') }}" data-bs-original-title="Users Management">
+          <a class="nav-link {{ Route::is('admin.unread.contacts') ? 'active' : '' }}"
+            href="{{ route('admin.unread.contacts') }}" data-bs-original-title="Users Management">
             <i class="fas fa-users"></i> <span>Manage Contact</span>
           </a>
         </li>
